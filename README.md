@@ -1,24 +1,23 @@
-# README
+Basic docker & k8s Rails setup.  
+App functionlity: fetch from JSONplaceholder via /posts (no authentification, db etc, just fetch and return data).
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**SETUP**
 
-Things you may want to cover:
+**Docker image**  
+https://hub.docker.com/repository/docker/camaradavinogrado/rails-k8s/general
 
-* Ruby version
 
-* System dependencies
+**Setup local k8s cluster**  
 
-* Configuration
+*Config*  
+If using microk8s: put `microk8s config` output into /home/:username/.kube/config  
 
-* Database creation
+*Add pods*
+```
+kubectl apply -f ./config/kube/deployment.yml
+kubectl apply -f ./config/kube/load_balancer.yml
+``` 
 
-* Database initialization
+*Ensure app is running on the cluster*  
+request the cluster ip from load balance service (`kubectl get services` to check `CLUSTER-IP`)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
