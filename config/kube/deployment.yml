@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rails-k8s-basic-example-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rails-k8s-basic
+  template:
+    metadata:
+      labels:
+        app: rails-k8s-basic
+    spec:
+      containers:
+      - name: rails-k8s-basic
+        image: camaradavinogrado/rails-k8s:latest
+        ports:
+        - containerPort: 3000
